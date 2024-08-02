@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.73 (2024-08-02)
+
+
+### Features
+
+* Always with Me ([d69285e](https://github.com/galaxy-s10/billd-desk-electron/commit/d69285e7c73ff3d537856bd962611b946d40071e))
+* init ([9d122be](https://github.com/galaxy-s10/billd-desk-electron/commit/9d122be755711a156f6584e9414ace874ae2001e))
+* 优化 ([87be590](https://github.com/galaxy-s10/billd-desk-electron/commit/87be590cc46741dae24691eeb0426513d37c1a28))
+* 优化 ([dc4d6db](https://github.com/galaxy-s10/billd-desk-electron/commit/dc4d6dbaadd149fc39a33d899d63b5899d12f691))
+* 优化 ([90a63e2](https://github.com/galaxy-s10/billd-desk-electron/commit/90a63e280ba27c55941dcfcb9dd1604d498b69e3))
+* 优化 ([fb2bd6c](https://github.com/galaxy-s10/billd-desk-electron/commit/fb2bd6cfd4630c92b8d3ebc627335db1db1bc36f))
+* 优化 ([46f9787](https://github.com/galaxy-s10/billd-desk-electron/commit/46f97875ac7ef7f5d63fb166972dd28ae3991aa6))
+* 优化 ([a56b00c](https://github.com/galaxy-s10/billd-desk-electron/commit/a56b00cf6e0ce5386582017babb7a581aa27e31f))
+* 优化 ([e5641a7](https://github.com/galaxy-s10/billd-desk-electron/commit/e5641a7b1f2b778d5fe649dd93a79e337431ed25))
+* 优化 ([eabf2e9](https://github.com/galaxy-s10/billd-desk-electron/commit/eabf2e97395968e13fa7629454a531597c644a51))
+* 优化 ([8639676](https://github.com/galaxy-s10/billd-desk-electron/commit/86396760b76631198a3b83dccf5da9ea60726159))
+* 优化 ([c6a455f](https://github.com/galaxy-s10/billd-desk-electron/commit/c6a455f9605942a40d3f006f450914608b38b7a4))
+* 优化 ([5fd27ca](https://github.com/galaxy-s10/billd-desk-electron/commit/5fd27ca4087b76c484e98346b9f66e66c70b4884))
+* 保存 ([0392137](https://github.com/galaxy-s10/billd-desk-electron/commit/0392137f572f1b1259fc1b4eb19d31ed682d5e9d))
+* 保存 ([4dad4f1](https://github.com/galaxy-s10/billd-desk-electron/commit/4dad4f122e8cdd2dfd538e21d5a30dbe95cdc87d))
+* 保存 ([c48bc4c](https://github.com/galaxy-s10/billd-desk-electron/commit/c48bc4c056675d5a9ba236be14880baf3ab0d13f))
+* 保存 ([9642520](https://github.com/galaxy-s10/billd-desk-electron/commit/9642520401680b13dc5e6dd317bf069b12882f83))
+* 保存 ([ac331d5](https://github.com/galaxy-s10/billd-desk-electron/commit/ac331d5467c1bcf5b8327002bb529d6d7a273d5a))
+* 保存 ([089a9b3](https://github.com/galaxy-s10/billd-desk-electron/commit/089a9b38e22c3909ca84012a6e75ba16b324cdfd))
+* 完善 ([a293860](https://github.com/galaxy-s10/billd-desk-electron/commit/a293860e99e6a21c1f9d3a1339979688d3d0075b))
+* 完善 ([5d2bb4a](https://github.com/galaxy-s10/billd-desk-electron/commit/5d2bb4ac459661ca5dd34e4ddf6ad954319334e2))
+* 完善 ([38c9283](https://github.com/galaxy-s10/billd-desk-electron/commit/38c928396282652fc9ed6fc83a8c935934e23003))
+* 完善 ([a258be2](https://github.com/galaxy-s10/billd-desk-electron/commit/a258be27632996d5f5f04ac26be908300fd910c3))
+* 文件传输 ([829e0d4](https://github.com/galaxy-s10/billd-desk-electron/commit/829e0d4772ba248f91a9e750cf95be3f309f6afa))
+
+
+### Bug Fixes
+
+* url ([df927bc](https://github.com/galaxy-s10/billd-desk-electron/commit/df927bc5a00ae8abf845adf9c7afdefc4723262d))
+* 主窗口拖动 ([5362c3a](https://github.com/galaxy-s10/billd-desk-electron/commit/5362c3a1503ecd7c673289b5353838f8df0f3f04))
+* 完善 ([44dab61](https://github.com/galaxy-s10/billd-desk-electron/commit/44dab61ed20d02fc795265ff182288060b775280))
+
 ### [0.0.72](https://github.com/galaxy-s10/billd-desk-electron/compare/v0.0.71...v0.0.72) (2024-07-02)
 
 ### [0.0.71](https://github.com/galaxy-s10/billd-desk-electron/compare/v0.0.70...v0.0.71) (2024-07-02)

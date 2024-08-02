@@ -1,6 +1,6 @@
 {
   "name": "billd-desk-electron",
-  "version": "0.0.72",
+  "version": "0.0.73",
   "description": "billd desk客户端",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   "author": "shuisheng <2274751790@qq.com>",
   "main": "electron-dist/index.js",
   "scripts": {
-    "build": "standard-version && vite build && electron-builder --mac --win --linux",
+    "build": "standard-version && vite build ",
     "build-old": "vue-tsc && vite build",
     "build:linux": "standard-version && vite build && electron-builder --linux",
     "build:mac": "standard-version && vite build && electron-builder --mac",
