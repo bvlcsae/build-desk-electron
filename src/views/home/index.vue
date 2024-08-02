@@ -391,6 +391,17 @@ onMounted(() => {
     chromeMediaSourceId.value = source.stream.id;
     handleDesktopStream(source.stream.id);
   });
+
+  window.electronAPI.ipcRenderer.on('query-data', (_event, source) => {
+    console.log('handle query-data');
+
+    window.electronAPI.ipcRenderer.send('remote-desktop-action', {
+      deskUserUuid: deskUserUuid.value,
+      deskUserPassword: deskUserPassword.value,
+      remoteDeskUserUuid: remoteDeskUserUuid.value,
+      receiverId: receiverId.value,
+    });
+  });
 });
 
 async function initUser() {
@@ -562,7 +573,7 @@ function startRemote() {
   // }, 1000 * 1);
 
   isControlOther.value = true;
-  window.electronAPI.ipcRenderer.send('createWindow', {
+  window.electronAPI.ipcRenderer.send('createRemoteDesktopChildWindow', {
     type: 'createWindow',
     data: {
       route: routerName.webrtc,
