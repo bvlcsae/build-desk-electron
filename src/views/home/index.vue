@@ -392,7 +392,7 @@ onMounted(() => {
     handleDesktopStream(source.stream.id);
   });
 
-  window.electronAPI.ipcRenderer.on('query-data', (_event, source) => {
+  window.electronAPI.ipcRenderer.on('query-data', () => {
     console.log('handle query-data');
 
     window.electronAPI.ipcRenderer.send('remote-desktop-action', {
