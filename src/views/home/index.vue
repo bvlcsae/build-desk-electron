@@ -392,7 +392,7 @@ onMounted(() => {
     handleDesktopStream(source.stream.id);
   });
 
-  window.electronAPI.ipcRenderer.on('query-data', () => {
+  window.electronAPI.ipcRenderer.on('query-data', (_event, params) => {
     console.log('handle query-data');
 
     window.electronAPI.ipcRenderer.send('remote-desktop-action', {
@@ -400,6 +400,7 @@ onMounted(() => {
       deskUserPassword: deskUserPassword.value,
       remoteDeskUserUuid: remoteDeskUserUuid.value,
       receiverId: receiverId.value,
+      backToUser: params
     });
   });
 });
