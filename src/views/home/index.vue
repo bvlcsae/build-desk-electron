@@ -400,14 +400,14 @@ onMounted(() => {
       deskUserPassword: deskUserPassword.value,
       remoteDeskUserUuid: remoteDeskUserUuid.value,
       receiverId: receiverId.value,
-      backToUser: params
+      backToUser: params,
     });
   });
 
   window.electronAPI.ipcRenderer.on('handle-start-remote', (_event, params) => {
     console.log('handle handle-start-remote');
-    remoteDeskUserUuid.value = params.remoteDeskUserUuid
-    startRemote()
+    remoteDeskUserUuid.value = params.deskUserUuid;
+    startRemote();
   });
 });
 
