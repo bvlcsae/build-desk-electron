@@ -507,6 +507,8 @@ async function handleDesktopStream(chromeMediaSourceId) {
 }
 
 async function handleRTC(receiver) {
+  console.log(anchorStream.value, 'handleRTChandleRTC');
+
   if (!anchorStream.value) return;
   try {
     await handlConstraints({

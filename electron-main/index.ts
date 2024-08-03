@@ -502,7 +502,7 @@ function createWindow() {
     childWindow?.webContents.send('childWindowInitRes', {});
   });
 
-  ipcMain.on('createWindow', (_event, data) => {
+  ipcMain.on('createRemoteDesktopChildWindow', (_event, data) => {
     try {
       console.log('electron收到createWindow', data);
       let w = data.data.width || windowNormalParams.width;
