@@ -405,7 +405,7 @@ onMounted(() => {
   });
 
   window.electronAPI.ipcRenderer.on('handle-start-remote', (_event, params) => {
-    console.log('handle handle-start-remote');
+    console.log('handle handle-start-remote', params);
     remoteDeskUserUuid.value = params.deskUserUuid;
     startRemote();
   });
