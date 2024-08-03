@@ -176,7 +176,7 @@ module.exports = {
     'import/no-named-as-default': 0, // https://github.com/import-js/eslint-plugin-import/blob/v2.26.0/docs/rules/no-named-as-default.md
 
     // @typescript-eslint插件
-    '@typescript-eslint/no-unused-vars': 2,
+    '@typescript-eslint/no-unused-vars': 0,
 
     '@typescript-eslint/restrict-template-expressions': [
       'error',

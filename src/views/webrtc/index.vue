@@ -1,186 +1,203 @@
 <template>
-  <div class="wrap">
-    <div
-      class="drag"
-      :style="style"
-      ref="dragEl"
-    >
-      <span
-        class="txt"
-        @click="showDetail = !showDetail"
-      >
-        连接详情
-      </span>
-
-      <div
-        class="info"
-        :class="{ show: showDetail }"
-      >
-        <div>wss：{{ WEBSOCKET_URL }}</div>
-        <div>axios：{{ AXIOS_BASEURL }}</div>
-        <div>joinedReceiver：{{ joinedReceiver }}</div>
-        <n-button @click="mockClick">mockClick</n-button>
-        <n-button @click="windowReload">刷新页面</n-button>
-        <n-button @click="handleDebug">打开调试</n-button>
-        <n-button>
-          <input
-            ref="uploadRef"
-            type="file"
-            class="input-upload"
-            multiple
-            @change="uploadChange"
-          />
-          传输文件
-        </n-button>
-        <div>
-          <span class="item">
-            分辨率：<span v-if="videoSettings?.width">
-              {{ videoSettings?.width || '-' }}x{{
-                videoSettings?.height || '-'
-              }}
-            </span>
-            <span v-else>-</span>
-          </span>
-          <span class="item">
-            帧率：{{ videoSettings?.frameRate?.toFixed(2) || '-' }}
-          </span>
-        </div>
-        <n-input-group>
-          <n-button>窗口id</n-button>
-          <n-input
-            v-model:value="windowId"
-            :style="{ width: '200px' }"
-            disabled
-          />
-          <n-button @click="copyToClipBoard(windowId)">复制</n-button>
-        </n-input-group>
-
-        <n-input-group>
-          <n-input-group-label>uuid</n-input-group-label>
-          <n-input
-            v-model:value="deskUserUuid"
-            :style="{ width: '200px' }"
-            disabled
-          />
-        </n-input-group>
-        <n-input-group>
-          <n-input-group-label>被控uuid</n-input-group-label>
-          <n-input
-            v-model:value="remoteDeskUserUuid"
-            :style="{ width: '200px' }"
-            disabled
-          />
-        </n-input-group>
-        <n-input-group>
-          <n-button>我的设备</n-button>
-          <n-input
-            v-model:value="mySocketId"
-            :style="{ width: '200px' }"
-            disabled
-          />
-          <n-button @click="copyToClipBoard(mySocketId)">复制</n-button>
-        </n-input-group>
-
-        <n-input-group>
-          <n-button>控制设备</n-button>
-          <n-input
-            v-model:value="joinedReceiver"
-            :style="{ width: '200px' }"
-            disabled
-          />
-          <n-button @click="copyToClipBoard(joinedReceiver)">复制</n-button>
-        </n-input-group>
-        <div class="rtc-config">
-          <div class="item">
-            <div class="txt">码率：</div>
-            <div class="down">
-              <n-select
-                size="small"
-                v-model:value="currentMaxBitrate"
-                :options="maxBitrate"
-              />
-            </div>
-          </div>
-          <div class="item">
-            <div class="txt">帧率：</div>
-            <div class="down">
-              <n-select
-                size="small"
-                v-model:value="currentMaxFramerate"
-                :options="maxFramerate"
-              />
-            </div>
-          </div>
-          <div class="item">
-            <div class="txt">分辨率：</div>
-            <div class="down big">
-              <n-select
-                size="small"
-                v-model:value="currentResolutionRatio"
-                :options="resolutionRatio"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="rtc-config">
-          <div class="item">
-            <div class="txt">视频内容：</div>
-            <div class="down">
-              <n-select
-                size="small"
-                v-model:value="currentVideoContentHint"
-                :options="videoContentHint"
-              />
-            </div>
-          </div>
-          <div class="item">
-            <div class="txt">音频内容：</div>
-            <div class="down big">
-              <n-select
-                size="small"
-                v-model:value="currentAudioContentHint"
-                :options="audioContentHint"
-              />
-            </div>
-          </div>
-        </div>
+  <div class="remote-window-wrapper">
+    <div class="header">
+      <div class="header-tit">正在控制 王松明 的电脑 00:37</div>
+      <div class="header-window-control">
+        <img
+          :src="zuixiaohua"
+          alt=""
+          @click="handleWinMin"
+        />
+        <img
+          :src="zuidahua"
+          alt=""
+          @click="handleWinMax"
+        />
+        <img
+          :src="guanbi"
+          alt=""
+          @click="handleWinClose"
+        />
       </div>
     </div>
+    <div class="wrap">
+      <!-- <div
+        class="drag"
+        :style="style"
+        ref="dragEl"
+      >
+        <span
+          class="txt"
+          @click="showDetail = !showDetail"
+        >
+          连接详情
+        </span>
 
-    <div
-      class="remote-video"
-      ref="videoWrapRef"
-      @mousedown="handleMouseDown"
-      @mousemove="handleMouseMove"
-      @mouseup="handleMouseUp"
-      @dblclick="handleDoublelclick"
-      @contextmenu="handleContextmenu"
-    ></div>
-  </div>
+        <div
+          class="info"
+          :class="{ show: showDetail }"
+        >
+          <div>wss：{{ WEBSOCKET_URL }}</div>
+          <div>axios：{{ AXIOS_BASEURL }}</div>
+          <div>joinedReceiver：{{ joinedReceiver }}</div>
+          <n-button @click="mockClick">mockClick</n-button>
+          <n-button @click="windowReload">刷新页面</n-button>
+          <n-button @click="handleDebug">打开调试</n-button>
+          <n-button>
+            <input
+              ref="uploadRef"
+              type="file"
+              class="input-upload"
+              multiple
+              @change="uploadChange"
+            />
+            传输文件
+          </n-button>
+          <div>
+            <span class="item">
+              分辨率：<span v-if="videoSettings?.width">
+                {{ videoSettings?.width || '-' }}x{{
+                  videoSettings?.height || '-'
+                }}
+              </span>
+              <span v-else>-</span>
+            </span>
+            <span class="item">
+              帧率：{{ videoSettings?.frameRate?.toFixed(2) || '-' }}
+            </span>
+          </div>
+          <n-input-group>
+            <n-button>窗口id</n-button>
+            <n-input
+              v-model:value="windowId"
+              :style="{ width: '200px' }"
+              disabled
+            />
+            <n-button @click="copyToClipBoard(windowId)">复制</n-button>
+          </n-input-group>
 
-  <div
-    v-if="showLoading"
-    class="loading"
-  >
-    <div class="txt">loading</div>
-    <n-button @click="handleDebug">打开调试</n-button>
+          <n-input-group>
+            <n-input-group-label>uuid</n-input-group-label>
+            <n-input
+              v-model:value="deskUserUuid"
+              :style="{ width: '200px' }"
+              disabled
+            />
+          </n-input-group>
+          <n-input-group>
+            <n-input-group-label>被控uuid</n-input-group-label>
+            <n-input
+              v-model:value="remoteDeskUserUuid"
+              :style="{ width: '200px' }"
+              disabled
+            />
+          </n-input-group>
+          <n-input-group>
+            <n-button>我的设备</n-button>
+            <n-input
+              v-model:value="mySocketId"
+              :style="{ width: '200px' }"
+              disabled
+            />
+            <n-button @click="copyToClipBoard(mySocketId)">复制</n-button>
+          </n-input-group>
+
+          <n-input-group>
+            <n-button>控制设备</n-button>
+            <n-input
+              v-model:value="joinedReceiver"
+              :style="{ width: '200px' }"
+              disabled
+            />
+            <n-button @click="copyToClipBoard(joinedReceiver)">复制</n-button>
+          </n-input-group>
+          <div class="rtc-config">
+            <div class="item">
+              <div class="txt">码率：</div>
+              <div class="down">
+                <n-select
+                  size="small"
+                  v-model:value="currentMaxBitrate"
+                  :options="maxBitrate"
+                />
+              </div>
+            </div>
+            <div class="item">
+              <div class="txt">帧率：</div>
+              <div class="down">
+                <n-select
+                  size="small"
+                  v-model:value="currentMaxFramerate"
+                  :options="maxFramerate"
+                />
+              </div>
+            </div>
+            <div class="item">
+              <div class="txt">分辨率：</div>
+              <div class="down big">
+                <n-select
+                  size="small"
+                  v-model:value="currentResolutionRatio"
+                  :options="resolutionRatio"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="rtc-config">
+            <div class="item">
+              <div class="txt">视频内容：</div>
+              <div class="down">
+                <n-select
+                  size="small"
+                  v-model:value="currentVideoContentHint"
+                  :options="videoContentHint"
+                />
+              </div>
+            </div>
+            <div class="item">
+              <div class="txt">音频内容：</div>
+              <div class="down big">
+                <n-select
+                  size="small"
+                  v-model:value="currentAudioContentHint"
+                  :options="audioContentHint"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div
+        class="remote-video"
+        ref="videoWrapRef"
+        @mousedown="handleMouseDown"
+        @mousemove="handleMouseMove"
+        @mouseup="handleMouseUp"
+        @dblclick="handleDoublelclick"
+        @contextmenu="handleContextmenu"
+      ></div>
+    </div>
+    <div class="footer">asfas</div>
+
+    <!-- <div
+      v-if="showLoading"
+      class="loading"
+    >
+      <div class="txt">loading</div>
+      <n-button @click="handleDebug">打开调试</n-button>
+    </div> -->
   </div>
 </template>
 
 <script lang="ts" setup>
 import { Key } from '@nut-tree/shared';
 import { useDraggable } from '@vueuse/core';
-import {
-  computeBox,
-  copyToClipBoard,
-  getRandomString,
-  windowReload,
-} from 'billd-utils';
+import { computeBox, getRandomString } from 'billd-utils';
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 import { fetchFindReceiverByUuid } from '@/api/deskUser';
-import { AXIOS_BASEURL, WEBSOCKET_URL } from '@/constant';
 import { useRTCParams } from '@/hooks/use-rtcParams';
 import { useWebsocket } from '@/hooks/use-websocket';
 import { useAppStore } from '@/store/app';
@@ -199,6 +216,13 @@ import {
 } from '@/types/websocket';
 import { videoFullBox } from '@/utils';
 
+import guanbi from './guanbi.svg';
+import zuidahua from './zuidahua.svg';
+import zuixiaohua from './zuixiaohua.svg';
+
+const handleWinClose = () => {};
+const handleWinMin = () => {};
+const handleWinMax = () => {};
 const route = useRoute();
 const {
   initWs,
@@ -1071,8 +1095,9 @@ function mockClick() {
 <style lang="scss" scoped>
 .wrap {
   overflow: hidden;
-  width: 100vw;
-  height: 100vh;
+  width: calc(100vw - 20px);
+  height: calc(100vh - 145px);
+  margin: 0 auto;
   .drag {
     position: fixed;
     z-index: 999;
@@ -1106,17 +1131,19 @@ function mockClick() {
     }
   }
   .remote-video {
-    width: 100vw;
-    height: 100vh;
+    background-color: rgba(100, 100, 111, 0.2);
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
     line-height: 0;
     // cursor: none;
   }
 }
 .loading {
-  z-index: 999;
-  background-color: #fff !important;
+  // z-index: 999;
+  // background-color: #fff !important;
 
-  @extend %maskBg;
+  // @extend %maskBg;
 
   .txt {
     position: absolute;
@@ -1126,5 +1153,37 @@ function mockClick() {
     font-size: 20px;
     transform: translate(-50%, -50%);
   }
+}
+
+.remote-window-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: #182529;
+}
+
+.header {
+  height: 45px;
+  display: flex;
+  color: #b8cfe6;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  .header-tit {
+  }
+  .header-window-control {
+    position: absolute;
+    right: 10px;
+    img {
+      cursor: pointer;
+      height: 14px;
+      margin-left: 10px;
+    }
+  }
+}
+
+footer {
+  height: 100px;
+  display: flex;
 }
 </style>

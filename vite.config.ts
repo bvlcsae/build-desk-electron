@@ -38,24 +38,24 @@ export default defineConfig(({ command, mode }) => {
       // legacy(),
       // isProduction && legacy(),
       vue(),
-      // electron({
-      //   main: {
-      //     entry: 'electron-main/index.ts', // 主进程文件
-      //     vite: {
-      //       build: {
-      //         outDir: 'electron-dist',
-      //       },
-      //     },
-      //   },
-      //   preload: {
-      //     input: 'electron-main/preload.ts',
-      //     vite: {
-      //       build: {
-      //         outDir: 'electron-dist',
-      //       },
-      //     },
-      //   },
-      // }),
+      electron({
+        main: {
+          entry: 'electron-main/index.ts', // 主进程文件
+          vite: {
+            build: {
+              outDir: 'electron-dist',
+            },
+          },
+        },
+        preload: {
+          input: 'electron-main/preload.ts',
+          vite: {
+            build: {
+              outDir: 'electron-dist',
+            },
+          },
+        },
+      }),
       // renderer({
       //   resolve: {
       //     '@nut-tree/nut-js': { type: 'cjs' },
