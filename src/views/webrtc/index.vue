@@ -725,6 +725,8 @@ watch(
   (newVal) => {
     newVal.forEach((item) => {
       if (videoWrapRef.value) {
+        console.log(item, 'item');
+        console.log(videoMap, 'videoMap');
         if (videoMap.value.has(item.receiver)) {
           return;
         }
