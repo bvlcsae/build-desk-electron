@@ -4,7 +4,6 @@ import { platform } from 'process';
 import {
   BrowserWindow,
   app,
-  desktopCapturer,
   ipcMain,
   powerMonitor,
   powerSaveBlocker,
@@ -437,33 +436,33 @@ function createWindow() {
       });
     }
   });
-  ipcMain.on('getScreenStream', async () => {
-    try {
-      console.log('收到getScreenStream');
-      const inputSources = await desktopCapturer.getSources({
-        types: ['screen'],
-      });
-      const res: any[] = [];
-      Object.keys(inputSources).forEach((key) => {
-        const source = inputSources[key];
-        if (!res.length) {
-          res.push(source);
-        }
-      });
-      win?.webContents.send('getScreenStreamRes', {
-        isErr: false,
-        msg: 'ok',
-        stream: res[0],
-      });
-    } catch (error) {
-      console.log('getScreenStream失败');
-      console.log(error);
-      win?.webContents.send('getScreenStreamRes', {
-        isErr: true,
-        msg: JSON.stringify(error),
-      });
-    }
-  });
+  // ipcMain.on('getScreenStream', async () => {
+  //   try {
+  //     console.log('收到getScreenStream');
+  //     const inputSources = await desktopCapturer.getSources({
+  //       types: ['screen'],
+  //     });
+  //     const res: any[] = [];
+  //     Object.keys(inputSources).forEach((key) => {
+  //       const source = inputSources[key];
+  //       if (!res.length) {
+  //         res.push(source);
+  //       }
+  //     });
+  //     win?.webContents.send('getScreenStreamRes', {
+  //       isErr: false,
+  //       msg: 'ok',
+  //       stream: res[0],
+  //     });
+  //   } catch (error) {
+  //     console.log('getScreenStream失败');
+  //     console.log(error);
+  //     win?.webContents.send('getScreenStreamRes', {
+  //       isErr: true,
+  //       msg: JSON.stringify(error),
+  //     });
+  //   }
+  // });
 
   ipcMain.on('getMainWindowId', (_event, data) => {
     console.log('electron收到getMainWindowId', data);

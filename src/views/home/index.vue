@@ -785,8 +785,28 @@ function handleMainWindowSetAlwaysOnTop(flag: boolean) {
   });
 }
 
-function handleScreen() {
+async function handleScreen() {
   window.electronAPI.ipcRenderer.send('getScreenStream');
+  try {
+    const inputSources = await window.electronAPI.desktopCapturer.getSources({
+      types: ['screen'],
+    });
+    const res: any[] = [];
+    Object.keys(inputSources).forEach((key) => {
+      const source = inputSources[key];
+      if (!res.length) {
+        res.push(source);
+      }
+    });
+    handleDesktopStream(res[0].id);
+  } catch (error) {
+    console.log('getScreenStream失败');
+    console.log(error);
+    console.log({
+      isErr: true,
+      msg: JSON.stringify(error),
+    });
+  }
 }
 
 function mouseSetPosition(x, y) {
