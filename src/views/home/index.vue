@@ -403,6 +403,12 @@ onMounted(() => {
       backToUser: params
     });
   });
+
+  window.electronAPI.ipcRenderer.on('handle-start-remote', (_event, params) => {
+    console.log('handle handle-start-remote');
+    remoteDeskUserUuid.value = params.remoteDeskUserUuid
+    startRemote()
+  });
 });
 
 async function initUser() {
