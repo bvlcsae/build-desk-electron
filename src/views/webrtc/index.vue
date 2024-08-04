@@ -16,7 +16,7 @@
         <img
           :src="guanbi"
           alt=""
-          @click="handleWinClose"
+          @click="endRemote"
         />
       </div>
     </div>
@@ -207,7 +207,10 @@
           </div>
           <div class="btn-item-text">清晰画质</div>
         </div>
-        <div class="btn-item">
+        <div
+          class="btn-item"
+          @click="endRemote"
+        >
           <div class="btn-item-icon btn-item-icon--close">
             <img
               :src="iconClose"
@@ -233,6 +236,7 @@
 import { Key } from '@nut-tree/shared';
 import { useDraggable } from '@vueuse/core';
 import { computeBox, getRandomString } from 'billd-utils';
+import { useDialog, useMessage } from 'naive-ui';
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -264,9 +268,30 @@ import iconRatio from './icon-ratio.png';
 import zuidahua from './zuidahua.svg';
 import zuixiaohua from './zuixiaohua.svg';
 
-const handleWinClose = () => {};
-const handleWinMin = () => {};
-const handleWinMax = () => {};
+const message = useMessage();
+const dialog = useDialog();
+const endRemote = () => {
+  dialog.warning({
+    title: '提示',
+    content: '是否退出远程控制？',
+    positiveText: '是',
+    negativeText: '否',
+    onPositiveClick: () => {
+      message.success('已关闭远程控制');
+      handleWinClose();
+    },
+    onNegativeClick: () => {},
+  });
+};
+const handleWinClose = () => {
+  window.electronAPI.ipcRenderer.send('childWindowClose');
+};
+const handleWinMin = () => {
+  window.electronAPI.ipcRenderer.send('childWindowMinimize');
+};
+const handleWinMax = () => {
+  window.electronAPI.ipcRenderer.send('childWindowMaximize');
+};
 const route = useRoute();
 const {
   initWs,

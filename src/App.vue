@@ -1,7 +1,11 @@
 <template>
-  <n-config-provider :theme-overrides="themeOverrides">
-    <router-view></router-view>
-  </n-config-provider>
+  <n-message-provider>
+    <n-dialog-provider>
+      <n-config-provider :theme-overrides="themeOverrides">
+        <router-view></router-view>
+      </n-config-provider>
+    </n-dialog-provider>
+  </n-message-provider>
 </template>
 
 <script lang="ts" setup>
