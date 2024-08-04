@@ -178,15 +178,54 @@
         @contextmenu="handleContextmenu"
       ></div>
     </div>
-    <div class="footer">asfas</div>
+    <div class="footer">
+      <div class="footer-btn-group">
+        <div class="btn-item">
+          <div class="btn-item-icon">
+            <img
+              :src="iconMicroClose"
+              alt=""
+            />
+          </div>
+          <div class="btn-item-text">开启麦克风</div>
+        </div>
+        <div class="btn-item">
+          <div class="btn-item-icon">
+            <img
+              :src="iconRatio"
+              alt=""
+            />
+          </div>
+          <div class="btn-item-text">原始大小</div>
+        </div>
+        <div class="btn-item">
+          <div class="btn-item-icon">
+            <img
+              :src="iconHD"
+              alt=""
+            />
+          </div>
+          <div class="btn-item-text">清晰画质</div>
+        </div>
+        <div class="btn-item">
+          <div class="btn-item-icon btn-item-icon--close">
+            <img
+              :src="iconClose"
+              alt=""
+            />
+          </div>
+          <div class="btn-item-text">结束</div>
+        </div>
+      </div>
+    </div>
 
-    <!-- <div
+    <div
       v-if="showLoading"
       class="loading"
     >
       <div class="txt">loading</div>
       <n-button @click="handleDebug">打开调试</n-button>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -216,7 +255,12 @@ import {
 } from '@/types/websocket';
 import { videoFullBox } from '@/utils';
 
+import iconClose from './close.png';
 import guanbi from './guanbi.svg';
+import iconHD from './hd-line.png';
+import iconMicroClose from './huatong-guan-L.png';
+// import iconMicro from './huatong-L.png';
+import iconRatio from './icon-ratio.png';
 import zuidahua from './zuidahua.svg';
 import zuixiaohua from './zuixiaohua.svg';
 
@@ -679,15 +723,15 @@ function reInit() {
   }, 1000);
 }
 
-watch(
-  () => appStore.remoteDesk.get(joinedReceiver.value)?.isClose,
-  (newval) => {
-    window.$message.warning(`isClose-${newval}`);
-    if (newval) {
-      reInit();
-    }
-  }
-);
+// watch(
+//   () => appStore.remoteDesk.get(joinedReceiver.value)?.isClose,
+//   (newval) => {
+//     window.$message.warning(`isClose-${newval}`);
+//     if (newval) {
+//       reInit();
+//     }
+//   }
+// );
 
 watch(
   () => networkStore.rtcMap.get(joinedReceiver.value)?.cbDataChannel,
@@ -1144,7 +1188,9 @@ function mockClick() {
   // background-color: #fff !important;
 
   // @extend %maskBg;
-
+  position: fixed;
+  top: 0;
+  left: 0;
   .txt {
     position: absolute;
     top: 50%;
@@ -1182,8 +1228,63 @@ function mockClick() {
   }
 }
 
-footer {
+.footer {
   height: 100px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .footer-btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .btn-item {
+      margin-left: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding-bottom: 24px;
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+
+        &.active {
+          background-color: #67c23a;
+        }
+
+        img {
+          height: 24px;
+        }
+        &--close {
+          background-color: #ff5752;
+
+          img {
+            height: 20px;
+          }
+        }
+      }
+
+      &-text {
+        text-align: center;
+        width: 100px;
+        position: absolute;
+        bottom: 0;
+        color: #ffffff;
+        font-size: 12px;
+      }
+    }
+  }
 }
 </style>
