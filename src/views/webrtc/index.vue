@@ -222,13 +222,13 @@
       </div>
     </div>
 
-    <div
+    <!-- <div
       v-if="showLoading"
       class="loading"
     >
       <div class="txt">loading</div>
       <n-button @click="handleDebug">打开调试</n-button>
-    </div>
+    </div> -->
   </div>
 </template>
 
