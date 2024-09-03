@@ -278,6 +278,7 @@ onMounted(() => {
     isAnchor: false,
     isRemoteDesk: true,
   });
+
   console.log(route.query);
   if (route.query.windowId !== undefined) {
     windowId.value = `${route.query.windowId as string}`;

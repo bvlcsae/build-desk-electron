@@ -28,9 +28,11 @@ export const NODE_ENV = process.env.NODE_ENV;
 
 // const localhostIp = '192.168.12.253:4300';
 
-export const WEBSOCKET_URL = 'wss://srs-pull.hsslive.cn'
+// export const WEBSOCKET_URL = 'wss://srs-pull.hsslive.cn';
+// export const AXIOS_BASEURL = 'https://live-api.hsslive.cn';
 
-export const AXIOS_BASEURL = 'https://live-api.hsslive.cn'
+export const WEBSOCKET_URL = 'ws://112.46.94.6:4300';
+export const AXIOS_BASEURL = 'http://112.46.94.6:4300';
 
 // ======本地调试=====
 
